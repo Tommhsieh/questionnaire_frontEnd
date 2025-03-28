@@ -1,0 +1,6 @@
+//bootstrap所需功能
+@import'../../node_modules/bootstrap/scss/functions';
+//自定義套件＃為防止更動原始檔是複製一份過來stylesheet資料夾
+@import'./stylesheet/helper/variables';
+
+@import'../../node_modules/bootstrap/scss/bootstrap.scss'
