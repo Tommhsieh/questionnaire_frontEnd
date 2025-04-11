@@ -1,61 +1,170 @@
 <script>
-import {RouterLink} from 'vue-router'
+import { RouterLink } from 'vue-router'
 
 export default {
     data() {
         return {
-    
+            surveys: [
+                { id: 1, title: "顧客服務滿意度調查", date: "2025-03-01" },
+                { id: 2, title: "產品回饋問卷", date: "2025-03-05" },
+                { id: 3, title: "市場調查問卷", date: "2025-03-10" }
+            ]
         };
     },
     methods: {
+        addSurvey() {
+            alert("新增問卷功能尚未實作");
+        },
+        viewSurvey(index) {
+            alert(`查看：${this.surveys[index].title}`);
+        },
+        editSurvey(index) {
+            alert(`修改：${this.surveys[index].title}`);
+        },
+        deleteSurvey(index) {
+            alert(`刪除：${this.surveys[index].title}`);
+        }
     },
-    components:{
+    components: {
         RouterLink
     }
-    };
-    </script>
+};
+</script>
 
 <template>
-<div class="container mx-auto p-5">
-    <h2 class="text-2xl font-bold mb-5">問卷管理系統</h2>
-    <button @click="addSurvey" class="bg-green-500 text-white px-4 py-2 rounded mb-3">新增問卷</button>
-    <button @click="addSurvey" class="bg-green-500 text-white px-4 py-2 rounded mb-3">刪除問卷</button>
-    <button @click="addSurvey" class="bg-green-500 text-white px-4 py-2 rounded mb-3">查詢問卷</button>
-    <RouterLink to="/">前台</RouterLink>
-    <table class="w-full border-collapse border border-gray-300">
-    <thead>
-        <tr class="bg-gray-100">
-        <th class="border p-2">問卷標題</th>
-        <th class="border p-2">建立日期</th>
-        <th class="border p-2">操作</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr v-for="(survey, index) in surveys" :key="survey.id" class="text-center">
-        <td class="border p-2">{{ survey.title }}</td>
-        <td class="border p-2">{{ survey.date }}</td>
-        <td class="border p-2">
-            <button @click="viewSurvey(index)" class="bg-blue-500 text-white px-2 py-1 rounded mr-2">查看</button>
-            <button @click="editSurvey(index)" class="bg-yellow-500 text-white px-2 py-1 rounded mr-2">修改</button>
-            <button @click="deleteSurvey(index)" class="bg-red-500 text-white px-2 py-1 rounded">刪除</button>
-        </td>
-        </tr>
-    </tbody>
+<div class="container">
+    <h2>問卷管理系統（後台）</h2>
+    
+    <div class="action-section">
+        <!-- <button @click="addSurvey">新增問卷</button>
+        <button @click="addSurvey">刪除問卷</button> -->
+        <input type="text" id="search" placeholder="搜尋問卷">
+        <button @click="addSurvey">查詢問卷</button>
+    </div>
+
+    <table class="survey-table">
+        <thead>
+            <tr>
+                <th>問卷標題</th>
+                <th>建立日期</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(survey, index) in surveys" :key="survey.id">
+                <td>{{ survey.title }}</td>
+                <td>{{ survey.date }}</td>
+                <td>
+                    <button @click="viewSurvey(index)" class="btn blue">查看</button>
+                    <button @click="editSurvey(index)" class="btn yellow">修改</button>
+                    <button @click="deleteSurvey(index)" class="btn red">刪除</button>
+                </td>
+            </tr>
+        </tbody>
     </table>
 </div>
 </template>
 
 <style lang="scss" scoped>
-    table {
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.action-section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    min-width: 100px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.survey-table {
     width: 100%;
     border-collapse: collapse;
-    }
-    th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    margin-top: 20px;
+}
+
+.survey-table th,
+.survey-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
     text-align: center;
-    }
-    th {
+}
+
+.survey-table th {
     background-color: #f4f4f4;
+}
+
+.btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    margin: 0 5px;
+}
+
+.btn.blue {
+    background-color: #3490dc;
+}
+.btn.blue:hover {
+    background-color: #2779bd;
+}
+
+.btn.yellow {
+    background-color: #fbbf24;
+}
+.btn.yellow:hover {
+    background-color: #f59e0b;
+}
+
+.btn.red {
+    background-color: #e3342f;
+}
+.btn.red:hover {
+    background-color: #cc1f1a;
+}
+#search {
+    margin: 0 10px 0 0;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 40%;
+}
+
+@media (max-width: 600px) {
+    .action-section {
+        flex-direction: column;
+        align-items: center;
     }
+
+    .btn {
+        width: 80%;
+        margin: 5px 0;
+    }
+}
 </style>

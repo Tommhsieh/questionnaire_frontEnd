@@ -6,6 +6,13 @@ export default {
 
         }
     },
+
+    methods:{
+
+        GoReplypage(){
+            this.$router.push("/Replypage")
+        }
+    }
 }
 </script>
 <template>
@@ -28,13 +35,13 @@ export default {
         </div>
         </div>
         <ul class="survey-list" id="surveyList">
-        <li class="survey-item" data-date="2025-03-01" data-title="顧客服務滿意度調查">
+        <li class="survey-item" data-date="2025-03-01" data-title="顧客服務滿意度調查" @click="GoReplypage()">
             顧客服務滿意度調查 (2025-03-01)
         </li>
-        <li class="survey-item" data-date="2025-03-05" data-title="產品回饋問卷">
+        <li class="survey-item" data-date="2025-03-05" data-title="產品回饋問卷" @click="GoReplypage()">
             產品回饋問卷 (2025-03-05)
         </li>
-        <li class="survey-item" data-date="2025-03-10" data-title="市場調查問卷">
+        <li class="survey-item" data-date="2025-03-10" data-title="市場調查問卷" @click="GoReplypage()">
             市場調查問卷 (2025-03-10)
         </li>
         </ul>
@@ -145,6 +152,7 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 }
 
 .survey-item span {

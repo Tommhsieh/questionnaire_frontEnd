@@ -19,6 +19,11 @@ const router = createRouter({
         name: 'Frontstage',
         component: () =>import('../components/Frontstage.vue'),
         },
+        {
+        path:'/Replypage',
+        name: 'Replypage',
+        component: () =>import('../components/Replypage.vue'),
+        },
     ]
 })
 
